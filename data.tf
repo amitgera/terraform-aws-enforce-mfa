@@ -113,6 +113,12 @@ data "aws_iam_policy_document" "force_mfa" {
         "true"
       ]
     }
+
+    condition {
+       test     = "NumericLessThanEquals"
+       variable = "aws:MultiFactorAuthAge"
+       values   = ["900"]
+     }
     
   }
 
@@ -271,6 +277,12 @@ data "aws_iam_policy_document" "force_mfa_but_allow_sign_in_to_change_password" 
         "true"
       ]
     }
+
+    condition {
+       test     = "NumericLessThanEquals"
+       variable = "aws:MultiFactorAuthAge"
+       values   = ["900"]
+     }
     
   }
 
